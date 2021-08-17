@@ -1,0 +1,85 @@
+logging:
+  level:
+    ROOT: DEBUG
+    br.com.dextra.potter: DEBUG
+spring:
+  application:
+    name: potter
+  cache:
+    type: redis
+    cache-names: HouseService
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    ssl: true
+    timeout: 60000
+  datasource:
+    driverClassName: org.h2.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:potter;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    name:
+    username: sa
+    password: password
+    hikari:
+      auto-commit: false
+  jackson:
+    serialization:
+      indent-output: true
+  h2:
+    console:
+      enabled: true  # default path: h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    properties:
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hibernate.hbm2ddl.auto: validate
+      hibernate.jdbc.time_zone: UTC
+  mail:
+    host: localhost
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+  mvc:
+    favicon:
+      enabled: false
+  task:
+    execution:
+      thread-name-prefix: potter-task-
+      pool:
+        core-size: 1
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: potter-scheduling-
+      pool:
+        size: 1
+server:
+  port: 3000
+  address: localhost
+
+app:
+  service:
+    domain-uri: /api
+    potter-api:
+      domain:
+        uri: http://us-central1-rh-challenges.cloudfunctions.net/potterApi
+        uri-houses: ${app.service.potter-api.domain.uri}/houses
+        uri-users: ${app.service.potter-api.domain.uri}/users
+      user:
+        email: heldersfaria@gmail.com
+        password: testeSenha
+        name: 'Hélder Silva de Faria'

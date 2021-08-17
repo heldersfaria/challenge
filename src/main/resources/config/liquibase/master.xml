@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <property name="now" value="now()" dbms="h2" global="true"/>
+
+    <property name="newId" value="random_uuid()" dbms="h2" global="true"/>
+
+    <property name="idType" value="varchar(36)" dbms="h2" global="true"/>
+
+    <property name="nvarchar_255_Type" value="varchar(255)" dbms="h2" global="true"/>
+
+    <property name="floatType" value="float4" dbms="h2" global="true"/>
+
+    <property name="clobType" value="clob" dbms="h2" global="true"/>
+
+    <property name="uuidType" value="uuid" dbms="h2" global="true"/>
+
+    <property name="dateTimeType" value="timestamp" dbms="h2" global="true"/>
+
+    <property name="identityType" value="bigint" dbms="h2" global="true"/>
+
+
+    <include file="config/liquibase/changelog/initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210816_added_entity_Character.xml" relativeToChangelogFile="false"/>
+
+
+</databaseChangeLog>
