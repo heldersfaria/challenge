@@ -22,6 +22,10 @@
 * [Springboot](https://spring.io/projects/spring-boot)
 * [MongDB](https://www.mongodb.com/)
 
+### Enunciado do desafio
+
+- https://github.com/dextra/challenges/blob/master/backend/MAKE-MAGIC-PT.md
+
 ### Documentação 
 
 - <a href="https://miro.medium.com/max/1400/1*mwXHpdt6CTQHxH78dwc6NA.jpeg"><strong>Swagger</strong></a>
