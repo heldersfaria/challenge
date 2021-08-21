@@ -22,7 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -178,6 +177,13 @@ public class CharacterResourceIT extends ResourceBaseIT {
     @Transactional
     public void getNonExistingCharacter() throws Exception {
         restMockMvc.perform(get(appServiceDomainUri + "/characters/{id}", randomUUID().toString()))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @Transactional
+    public void getNonValidCharacter() throws Exception {
+        restMockMvc.perform(get(appServiceDomainUri + "/characters/{id}", "XXXX"))
                 .andExpect(status().isNotFound());
     }
 

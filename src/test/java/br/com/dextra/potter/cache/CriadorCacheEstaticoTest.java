@@ -8,8 +8,6 @@ import org.mockito.Mock;
 import org.springframework.boot.ApplicationArguments;
 import reactor.core.publisher.Mono;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -38,9 +36,8 @@ public class CriadorCacheEstaticoTest {
 
     @Test
     public void testeRunWithError() {
-        when(integracaoDeHouses.popularHouse()).thenThrow(new RuntimeException("Error"));
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> criadorCacheEstatico.run(applicationArguments));
-        assertEquals(exception.getMessage(), "Error");
+        when(integracaoDeHouses.popularHouse()).thenReturn(Mono.error(new RuntimeException("Error")).then());
+        criadorCacheEstatico.run(applicationArguments);
         verify(integracaoDeHouses, times(1)).popularHouse();
     }
 }
