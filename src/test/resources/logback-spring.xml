@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <logger name="org.springframework.test.context" level="OFF"/>
+    <logger name="br.com.dextra.potter" level="OFF"/>
+    <logger name="io.github.jhipster" level="OFF"/>
+    <logger name="javax.activation" level="OFF"/>
+    <logger name="javax.mail" level="OFF"/>
+    <logger name="javax.xml.bind" level="OFF"/>
+    <logger name="ch.qos.logback" level="OFF"/>
+    <logger name="com.netflix" level="OFF"/>
+    <logger name="com.netflix.discovery" level="OFF"/>
+    <logger name="com.ryantenney" level="OFF"/>
+    <logger name="com.sun" level="OFF"/>
+    <logger name="com.zaxxer" level="OFF"/>
+    <logger name="io.undertow" level="OFF"/>
+    <logger name="io.undertow.websockets.jsr" level="OFF"/>
+    <logger name="org.apache" level="OFF"/>
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
+    <logger name="org.bson" level="OFF"/>
+    <logger name="org.hibernate.validator" level="OFF"/>
+    <logger name="org.hibernate" level="OFF"/>
+    <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
+    <logger name="org.springframework" level="OFF"/>
+    <logger name="org.springframework.web" level="OFF"/>
+    <logger name="org.springframework.security" level="OFF"/>
+    <logger name="org.springframework.cache" level="OFF"/>
+    <logger name="org.thymeleaf" level="OFF"/>
+    <logger name="org.xnio" level="OFF"/>
+    <logger name="com.microsoft.sqlserver.jdbc.internals" level="OFF"/>
+    <logger name="springfox" level="OFF"/>
+    <logger name="sun.rmi" level="OFF"/>
+    <logger name="liquibase" level="OFF"/>
+    <logger name="LiquibaseSchemaResolver" level="OFF"/>
+    <logger name="sun.net.www" level="OFF"/>
+    <logger name="sun.rmi.transport" level="OFF"/>
+    <logger name="org.zalando" level="OFF"/>
+
+    <root level="OFF">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

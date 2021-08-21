@@ -3,7 +3,6 @@ package br.com.dextra.potter.web.errors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +11,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import javax.validation.ConstraintViolationException;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RestControllerAdvice(basePackages = {"br.com.dextra.potter.web"})
@@ -29,7 +29,7 @@ public class RestExceptionMapper {
     @ExceptionHandler
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         log.error("Method argument not valid.", ex);
-        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Validation error");
+        ApiError apiError = new ApiError(BAD_REQUEST, "Validation error");
         apiError.addValidationErrors(ex.getBindingResult().getFieldErrors());
         apiError.addValidationError(ex.getBindingResult().getGlobalErrors());
         return buildResponseEntity(apiError);
@@ -38,7 +38,7 @@ public class RestExceptionMapper {
     @ExceptionHandler
     protected ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException ex) {
         log.error("Constraint violation.", ex);
-        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Validation error");
+        ApiError apiError = new ApiError(BAD_REQUEST, "Validation error");
         apiError.addValidationErrors(ex.getConstraintViolations());
         return buildResponseEntity(apiError);
     }
@@ -46,7 +46,14 @@ public class RestExceptionMapper {
     @ExceptionHandler
     protected ResponseEntity<Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
         log.error("Method argument type mismatch.", ex);
-        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Type mismatch error", ex);
+        ApiError apiError = new ApiError(BAD_REQUEST, "Type mismatch error", ex);
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler
+    protected ResponseEntity<Object> BadRequestAlertException(BadRequestAlertException ex) {
+        log.error("Bad Request Alert Exception", ex);
+        ApiError apiError = new ApiError(ex.getStatus(), ex.getMessage(), ex);
         return buildResponseEntity(apiError);
     }
 

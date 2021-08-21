@@ -21,8 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import static org.springframework.http.ResponseEntity.noContent;
-import static org.springframework.http.ResponseEntity.ok;
+import static org.springframework.http.ResponseEntity.*;
 
 @RestController
 @RequestMapping("${app.service.domain-uri}")
@@ -38,7 +37,7 @@ public class CharacterResource {
     public ResponseEntity<CharacterDTO> createCharacter(@Valid @RequestBody CharacterDTO characterDTO) throws URISyntaxException {
 
         if (characterDTO.getId() != null) {
-            throw new BadRequestAlertException("A new AntiFraude Documental cannot already have an ID");
+            throw new BadRequestAlertException("A new AntiFraude Documental cannot already have an ID.");
         }
 
         CharacterDTO result = characterService.save(characterDTO);
@@ -65,7 +64,7 @@ public class CharacterResource {
     public ResponseEntity<CharacterDTO> getCharacter(@PathVariable @UUID String id) {
         return characterService.findOne(id)
                 .map(characterDTO -> ok().body(characterDTO))
-                .orElseGet(() -> ok().build());
+                .orElseGet(() -> notFound().build());
     }
 
     @DeleteMapping("/characters/{id}")

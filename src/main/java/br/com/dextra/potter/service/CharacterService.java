@@ -32,7 +32,7 @@ public class CharacterService {
         this.houseService = houseService;
     }
 
-    public CharacterDTO save(@Valid CharacterDTO characterDTO) {
+    public CharacterDTO save(CharacterDTO characterDTO) {
 
         if (houseService.findOne(characterDTO.getHouse()).isEmpty()) {
             throw new BadRequestAlertException("A casa relacionada a este personagem não existe.");
