@@ -83,3 +83,24 @@ app:
         email: heldersfaria@gmail.com
         password: testeSenha
         name: 'Hélder Silva de Faria'
+
+resilience4j.retry:
+  instances:
+    potter-api-r:
+      maxRetryAttempts: 3
+      waitDuration: 1s
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 15
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 30s
+      failureRateThreshold: 100
+      minimumNumberOfCalls: 10
+  instances:
+    potter-api-cb:
+      baseConfig: default

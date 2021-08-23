@@ -13,11 +13,13 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Optional;
 
+@EnableSwagger2
 @EnableMongoRepositories(basePackages = "br.com.dextra.potter.repository.mongodb")
 @EnableCaching
 @EnableScheduling

@@ -28,7 +28,7 @@
 
 ### Documentação 
 
-- <a href="https://miro.medium.com/max/1400/1*mwXHpdt6CTQHxH78dwc6NA.jpeg">Swagger</a>
+- <a href="http://localhost:3000/swagger-ui/#">Swagger</a>
 
 - <a href="https://www.getpostman.com/collections/799c1a99cd73b9e1ee56">Collection Postman</a>
 

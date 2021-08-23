@@ -5,6 +5,7 @@ import br.com.dextra.potter.service.HouseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,11 @@ public class HouseResource {
     @GetMapping("/houses")
     public ResponseEntity<List<HouseDTO>> getAllHouses() {
         return ok().body(this.houseService.findAll());
+    }
+
+    @GetMapping("/houses/potter-api")
+    public ResponseEntity<List<HouseDTO>> findAllByPotterApi(@RequestHeader String apikey) {
+        return ok().body(this.houseService.findAllByPotterApi(apikey));
     }
 
     @GetMapping("/houses/{id}")

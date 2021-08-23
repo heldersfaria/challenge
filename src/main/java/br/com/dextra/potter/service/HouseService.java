@@ -1,5 +1,6 @@
 package br.com.dextra.potter.service;
 
+import br.com.dextra.potter.client.PotterApiClient;
 import br.com.dextra.potter.dto.HouseDTO;
 import br.com.dextra.potter.repository.mongodb.HouseMongoDBRepository;
 import org.springframework.cache.annotation.Cacheable;
@@ -13,14 +14,20 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 @Service
 public class HouseService {
 
+    private final PotterApiClient potterApiClient;
     private final HouseMongoDBRepository houseMongoDBRepository;
 
-    public HouseService(HouseMongoDBRepository houseMongoDBRepository) {
+    public HouseService(PotterApiClient potterApiClient, HouseMongoDBRepository houseMongoDBRepository) {
+        this.potterApiClient = potterApiClient;
         this.houseMongoDBRepository = houseMongoDBRepository;
     }
 
     public List<HouseDTO> findAll() {
         return this.houseMongoDBRepository.findAll();
+    }
+
+    public List<HouseDTO> findAllByPotterApi(String apiKey) {
+        return this.potterApiClient.getHouses(apiKey);
     }
 
     public List<HouseDTO> saveAll(List<HouseDTO> list) {
